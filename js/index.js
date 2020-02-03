@@ -39,7 +39,7 @@ let client=null
 
 async function windowsLoaded(){
 client=await Ae.Aepp();
-callStatic('getAllMemes',[]);
+let myArr=callStatic('getAllMemes',[]);
 }
 window.addEventListener('load',windowsLoaded);
 
@@ -55,4 +55,67 @@ async function callStatic(functionName,argsArray){
     let response=await contract.call(functionName,argsArray,{callStatic:true}).catch(e=>console.error(e));
     let decodedResponse=response.decode().catch(e=>console.error(e));
     console.log(decodedResponse);
+}
+
+function createNewMeme(){
+    let allMemes=document.getElementById("all-memes");
+
+    let individualMeme=document.createElement("div");
+    individualMeme.classList.add("individual-meme");
+
+    let voteCountParagraph=document.createElement('p');
+    voteCountParagraph.innerText='Votecount : 3';
+
+    let memeImage=document.createElement('img');
+    memeImage.src=""
+
+    let aeInput=document.createElement('input');
+    aeInput.placeholder="Enter Meme url" 
+
+    let voteButton=document.createElement('button');
+    voteButton.classList.add('vote');
+
+   
+    individualMeme.appendChild(voteCountParagraph);
+    individualMeme.appendChild(memeImage);
+    individualMeme.appendChild(aeInput);
+    individualMeme.appendChild(voteButton);
+
+    allMemes.appendChild(individualMeme);
+}
+let myArr=[[1,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimiTwo","url":"myUrlOne","voteCount":0}],
+[2,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimione","url":"myUrlOne","voteCount":0}],
+[3,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimione","url":"myUrlOne","voteCount":0}],
+[4,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimione","url":"myUrlOne","voteCount":0}],[5,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimione","url":"myUrlthree","voteCount":0}]] 
+for(let i in myArr){
+    console.log(myArr[i]);
+    let allMemes=document.getElementById("all-memes");
+
+    let individualMeme=document.createElement("div");
+    individualMeme.classList.add("individual-meme");
+
+    let voteCountParagraph=document.createElement('p');
+    voteCountParagraph.innerText='Votecount :'+ myArr[i][1]['voteCount'];
+
+    let memeImage=document.createElement('img');
+    memeImage.src=myArr[i][1].url;
+
+    let aeInput=document.createElement('input');
+    aeInput.placeholder="Enter Meme url" 
+
+    let voteButton=document.createElement('button');
+    voteButton.innerText="Vote"
+    voteButton.addEventListener('click',function(){
+        aeInput.value=myArr[i][1].url;
+        console.log(myArr[i][0])
+    });
+    voteButton.classList.add('vote');
+
+   
+    individualMeme.appendChild(voteCountParagraph);
+    individualMeme.appendChild(memeImage);
+    individualMeme.appendChild(aeInput);
+    individualMeme.appendChild(voteButton);
+
+    allMemes.appendChild(individualMeme);
 }
