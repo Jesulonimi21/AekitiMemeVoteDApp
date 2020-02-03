@@ -1,4 +1,4 @@
-let contractAddress="ct_8zmH3erNcM7CWM3Usft33L5doEjaLzXmZEMvLsUY6aXeKoX8K";
+let contractAddress="ct_Manz8NS6tBKkq8eyoFZNhJf3urAmDRx39WetZq5BA8jo2vb4P";
 let contractSource=`
 contract MemeVote=
   record meme={
