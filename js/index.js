@@ -1,38 +1,39 @@
 let contractAddress="ct_8zmH3erNcM7CWM3Usft33L5doEjaLzXmZEMvLsUY6aXeKoX8K ";
-let contractSource=`contract MemeVote=
-record meme={
-  name:string,
-  url:string,
-  creatorAddress:address,
-  voteCount:int
-  }
-entrypoint init()={memes={},totalVoteCount=0}
+let contractSource=`
+contract MemeVote=
+  record meme={
+    name:string,
+    url:string,
+    creatorAddress:address,
+    voteCount:int
+    }
+  entrypoint init()={memes={},totalVoteCount=0}
 
-record state={
-  totalVoteCount:int,
-  memes:map(int,meme)
-  }
+  record state={
+    totalVoteCount:int,
+    memes:map(int,meme)
+    }
 
-stateful entrypoint registerMeme(name':string, url':string)=
-  let newMeme={name=name',url=url',creatorAddress=Call.caller,voteCount=0}
-  let index=getTotalVoteCount()+1
-  put(state{memes[index]=newMeme,totalVoteCount=index})
-      
-entrypoint getTotalVoteCount()=
-  state.totalVoteCount
+  stateful entrypoint registerMeme(name':string, url':string)=
+    let newMeme={name=name',url=url',creatorAddress=Call.caller,voteCount=0}
+    let index=getTotalVoteCount()+1
+    put(state{memes[index]=newMeme,totalVoteCount=index})
+        
+  entrypoint getTotalVoteCount()=
+   state.totalVoteCount
   
-entrypoint getMeme(index)=
-  state.memes[index]
+  entrypoint getMeme(index)=
+   state.memes[index]
   
-entrypoint getAllMemes()=
-  state.memes
+  entrypoint getAllMemes()=
+    state.memes
   
-payable stateful entrypoint voteMeme(index:int)=
-  let selectedMeme=getMeme(index)
-  Chain.spend(selectedMeme.creatorAddress,Call.value)
-  let selectedMemeVoteCount=selectedMeme.voteCount+Call.value
-  let votedMeme=selectedMeme{voteCount=selectedMemeVoteCount}
-  put(state{memes[index]=votedMeme})
+  payable stateful entrypoint voteMeme(index:int)=
+    let selectedMeme=getMeme(index)
+    Chain.spend(selectedMeme.creatorAddress,Call.value)
+    let selectedMemeVoteCount=selectedMeme.voteCount+Call.value
+    let votedMeme=selectedMeme{voteCount=selectedMemeVoteCount}
+    put(state{memes[index]=votedMeme})
 
 `
 let client=null
