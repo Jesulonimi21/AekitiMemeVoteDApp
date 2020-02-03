@@ -1,5 +1,5 @@
 let contractAddress="ct_8zmH3erNcM7CWM3Usft33L5doEjaLzXmZEMvLsUY6aXeKoX8K ";
-let constractSource=`contract MemeVote=
+let contractSource=`contract MemeVote=
 record meme={
   name:string,
   url:string,
@@ -44,18 +44,29 @@ let myArr= await callStatic('getAllMemes',[]);
 window.addEventListener('load',windowsLoaded);
 
 async function contractCall(functionName,argsArray,value){
-    let contract =client.getContractInstance(constractSource,{contractAddress});
+    let contract =client.getContractInstance(contractSource,{contractAddress});
    let response=await contract.call(functionName,argsArray,{amount:value}).catch(e=>console.error(e));
    console.log("response",response);
     return response;
 }
 
-async function callStatic(functionName,argsArray){
-    let contract=client.getContractInstance(constractSource,{contractAddress});
-    let response=await contract.call(functionName,argsArray,{callStatic:true}).catch(e=>console.error(e));
-    let decodedResponse=response.decode().catch(e=>console.error(e));
-    console.log(decodedResponse);
-}
+// async function callStatic(functionName,argsArray){
+//     let contract=client.getContractInstance(constractSource,{contractAddress});
+//     let response=await contract.call(functionName,argsArray,{callStatic:true}).catch(e=>console.error(e));
+//     let decodedResponse=response.decode().catch(e=>console.error(e));
+//     console.log(decodedResponse);
+// }
+
+async function callStatic(func, args) {
+    //Create a new contract instance that we can interact with
+    const contract = await client.getContractInstance(contractSource, {contractAddress});
+    //Make a call to get data of smart contract func, with specefied arguments
+    const calledGet = await contract.call(func, args, {callStatic: true}).catch(e => console.error(e));
+    //Make another call to decode the data received in first call
+    const decodedGet = await calledGet.decode().catch(e => console.error(e));
+  
+    return decodedGet;
+  }
 
 function createNewMeme(){
     let allMemes=document.getElementById("all-memes");
