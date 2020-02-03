@@ -39,7 +39,7 @@ let client=null
 
 async function windowsLoaded(){
 client=await Ae.Aepp();
-let myArr=callStatic('getAllMemes',[]);
+let myArr= await callStatic('getAllMemes',[]);
 }
 window.addEventListener('load',windowsLoaded);
 
