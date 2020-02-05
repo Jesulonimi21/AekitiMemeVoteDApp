@@ -47,7 +47,7 @@ document.getElementById("register-meme").addEventListener("click", async functio
     document.getElementById("loader").style.display="block";
     await contractCall("registerMeme",["name",value],0);
     document.getElementById("loader").style.display="none";
-    myArr.push([myArr.length-1,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"name","url":value,"voteCount":0}]);
+    myArr.push([myArr.length,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"name","url":value,"voteCount":0}]);
     createNewMeme(myArr.length-1);
   }
 });
@@ -161,7 +161,7 @@ function createNewMeme(i){
         }else{
           console.log(myArr[i][0]);
           document.getElementById("loader").style.display="block";
-          await  contractCall("voteMeme",[import moduleName from 'module'],parseInt(aeInput.value)*1000000000000000000);
+          await  contractCall("voteMeme",[i],parseInt(aeInput.value)*1000000000000000000);
           document.getElementById("loader").style.display="none";
           myArr[i][1]['voteCount']=myArr[i][1]['voteCount']+parseInt(aeInput.value);
           voteCountParagraph.innerText='Votecount :'+ myArr[i][1]['voteCount']
