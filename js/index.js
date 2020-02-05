@@ -47,7 +47,8 @@ document.getElementById("register-meme").addEventListener("click", async functio
     document.getElementById("loader").style.display="block";
     await contractCall("registerMeme",["name",value],0);
     document.getElementById("loader").style.display="none";
-
+    myArr.push([myArr.length,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"name","url":value,"voteCount":0}]);
+    createNewMeme(myArr.length);
   }
 });
 let myArr;
@@ -133,30 +134,48 @@ async function callStatic(func, args) {
     return decodedGet;
   }
 
-function createNewMeme(){
+function createNewMeme(index){
+ 
+    console.log(myArr[i]);
     let allMemes=document.getElementById("all-memes");
-
+  
     let individualMeme=document.createElement("div");
     individualMeme.classList.add("individual-meme");
-
+  
     let voteCountParagraph=document.createElement('p');
-    voteCountParagraph.innerText='Votecount : 3';
-
+    voteCountParagraph.innerText='Votecount :'+ myArr[i][1]['voteCount'];
+  
     let memeImage=document.createElement('img');
-    memeImage.src=""
-
+    memeImage.src=myArr[i][1]['url'];
+  
     let aeInput=document.createElement('input');
     aeInput.placeholder="Enter Meme url" 
-
+    
     let voteButton=document.createElement('button');
+    voteButton.innerText="Vote"
+    voteButton.addEventListener('click', async function(){
+        
+  
+        if(aeInput.value==""){
+          return;
+        }else{
+          console.log(myArr[i][0]);
+          document.getElementById("loader").style.display="block";
+          await  contractCall("voteMeme",[myArr[i][0]],parseInt(aeInput.value));
+          document.getElementById("loader").style.display="none";
+          myArr[i][1]['voteCount']=myArr[i][1]['voteCount']+parseInt(aeInput.value);
+          voteCountParagraph.innerText='Votecount :'+ myArr[i][1]['voteCount']
+  
+        }
+        console.log(myArr[i][0])
+    });
     voteButton.classList.add('vote');
-
+  
    
     individualMeme.appendChild(voteCountParagraph);
     individualMeme.appendChild(memeImage);
     individualMeme.appendChild(aeInput);
     individualMeme.appendChild(voteButton);
-
     allMemes.appendChild(individualMeme);
 }
 // let myArr=[[1,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimiTwo","url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo61tTQswF6SaTt-wlBAx92tnDUEUtl_CvZdiK78tNyWxrDIeh&s","voteCount":0}],
