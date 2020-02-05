@@ -134,7 +134,7 @@ async function callStatic(func, args) {
     return decodedGet;
   }
 
-function createNewMeme(index){
+function createNewMeme(i){
  
     console.log(myArr[i]);
     let allMemes=document.getElementById("all-memes");
