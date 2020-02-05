@@ -1,4 +1,4 @@
-const contractAddress="ct_aZ5oawNELdpA1aRhhwnDpsoqasRetNJv6xzdNzoVRb9ohHxcT" ;
+const contractAddress="ct_HiqkF38zSubCo9kY6k46YQQX6vZsGUvGwja7AxM6Fo6PMtQhF" ;
 const contractSource=`
 contract MemeVote=
   record meme={
