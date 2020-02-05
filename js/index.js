@@ -48,7 +48,7 @@ document.getElementById("register-meme").addEventListener("click", async functio
     await contractCall("registerMeme",["name",value],0);
     document.getElementById("loader").style.display="none";
     myArr.push([myArr.length,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"name","url":value,"voteCount":0}]);
-    createNewMeme(myArr.length);
+    createNewMeme(myArr.length-1);
   }
 });
 let myArr;
