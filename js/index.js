@@ -41,6 +41,7 @@ let client=null
 async function windowsLoaded(){
 client=await Ae.Aepp();
 let myArr= await callStatic('getAllMemes',[]);
+console.log(myArr);
 }
 window.addEventListener('load',windowsLoaded);
 
@@ -65,7 +66,7 @@ async function callStatic(func, args) {
     const calledGet = await contract.call(func, args, {callStatic: true}).catch(e => console.error(e));
     //Make another call to decode the data received in first call
     const decodedGet = await calledGet.decode().catch(e => console.error(e));
-  
+
     return decodedGet;
   }
 
