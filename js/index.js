@@ -38,6 +38,19 @@ contract MemeVote=
 `
 let client=null
 
+
+document.getElementById("register-meme").addEventListener("click", async function(){
+  let value=document.getElementById("url-input").value;
+  if(value==""){
+    return;
+  }else{
+    document.getElementById("loader").style.display="block";
+    await contractCall("registerMeme",["name",value],0);
+    document.getElementById("loader").style.display="none";
+
+  }
+});
+
 async function windowsLoaded(){
 client=await Ae.Aepp();
 let myArr= await callStatic('getAllMemes',[]);
@@ -69,7 +82,7 @@ for(let i in myArr){
       }else{
         console.log(myArr[i][0]);
         document.getElementById("loader").style.display="block";
-        await  contractCall("voteMeme",[i],parseInt(aeInput.value));
+        await  contractCall("voteMeme",[myArr[i][0]],parseInt(aeInput.value));
         document.getElementById("loader").style.display="none";
 
       }
