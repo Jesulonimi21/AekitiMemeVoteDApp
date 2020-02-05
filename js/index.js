@@ -95,10 +95,11 @@ function createNewMeme(){
 
     allMemes.appendChild(individualMeme);
 }
-let myArr=[[1,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimiTwo","url":"myUrlOne","voteCount":0}],
-[2,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimione","url":"myUrlOne","voteCount":0}],
-[3,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimione","url":"myUrlOne","voteCount":0}],
-[4,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimione","url":"myUrlOne","voteCount":0}],[5,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimione","url":"myUrlthree","voteCount":0}]] 
+let myArr=[[1,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimiTwo","url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo61tTQswF6SaTt-wlBAx92tnDUEUtl_CvZdiK78tNyWxrDIeh&s","voteCount":0}],
+    [2,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimione","url":"https://www.wbrc.com/resizer/ZBOPYrOOggKobpvrrIrfClObKaI=/1400x0/arc-anglerfish-arc2-prod-raycom.s3.amazonaws.com/public/BV7IA24BUZBBRCKTJE5XP6KPPQ.jpg","voteCount":0}],
+    [3,{"creatorAddress":"ak_2bKhoFWgQ9sos4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimione","url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo61tTQswF6SaTt-wlBAx92tnDUEUtl_CvZdiK78tNyWxrDIeh&s","voteCount":0}],
+    [4,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimione","url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo61tTQswF6SaTt-wlBAx92tnDUEUtl_CvZdiK78tNyWxrDIeh&s","voteCount":0}],
+    [5,{"creatorAddress":"ak_2bKhoFWgQ9os4x8CaeDTHZRGzUcSwcXYUrM12gZHKTdyreGRgG","name":"jesulonimione","url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo61tTQswF6SaTt-wlBAx92tnDUEUtl_CvZdiK78tNyWxrDIeh&s","voteCount":0}]]; 
 for(let i in myArr){
     console.log(myArr[i]);
     let allMemes=document.getElementById("all-memes");
