@@ -58,11 +58,21 @@ for(let i in myArr){
 
   let aeInput=document.createElement('input');
   aeInput.placeholder="Enter Meme url" 
-
+  aeInput.value=myArr[i][1].url;
   let voteButton=document.createElement('button');
   voteButton.innerText="Vote"
-  voteButton.addEventListener('click',function(){
-      aeInput.value=myArr[i][1].url;
+  voteButton.addEventListener('click', async function(){
+      
+
+      if(aeInput.value==""){
+        return;
+      }else{
+        console.log(myArr[i][0]);
+        document.getElementById("loader").style.display="block";
+        await  contractCall("voteMeme",[i],parseInt(aeInput.value));
+        document.getElementById("loader").style.display="none";
+
+      }
       console.log(myArr[i][0])
   });
   voteButton.classList.add('vote');
@@ -72,7 +82,6 @@ for(let i in myArr){
   individualMeme.appendChild(memeImage);
   individualMeme.appendChild(aeInput);
   individualMeme.appendChild(voteButton);
-
   allMemes.appendChild(individualMeme);
 }
 }
