@@ -1,4 +1,4 @@
-const contractAddress="ct_UPkzG86gD5rB8bfCjmBcgU2mwc75o1zoaUc95U7FbrC3pdi1q" ;
+const contractAddress="ct_aZ5oawNELdpA1aRhhwnDpsoqasRetNJv6xzdNzoVRb9ohHxcT" ;
 const contractSource=`
 contract MemeVote=
   record meme={
@@ -25,7 +25,7 @@ contract MemeVote=
   entrypoint getMeme(index)=
    state.memes[index]
   
-  entrypoint getAllMemes()=
+  entrypoint getAllMemes():map(int,meme)=
     state.memes
   
   payable stateful entrypoint voteMeme(index:int)=
