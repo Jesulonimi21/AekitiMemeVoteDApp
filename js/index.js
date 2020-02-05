@@ -83,9 +83,9 @@ for(let i in myArr){
       }else{
         console.log(myArr[i][0]);
         document.getElementById("loader").style.display="block";
-        await  contractCall("voteMeme",[myArr[i][0]],parseInt(aeInput.value));
+        await  contractCall("voteMeme",[myArr[i][0]],parseInt(aeInput.value)*1000000000000000000);
         document.getElementById("loader").style.display="none";
-        myArr[i][1]['voteCount']=myArr[i][1]['voteCount']+parseInt(aeInput.value)*1000000000000000000;
+        myArr[i][1]['voteCount']=myArr[i][1]['voteCount']+parseInt(aeInput.value);
         voteCountParagraph.innerText='Votecount :'+ myArr[i][1]['voteCount']
 
       }
