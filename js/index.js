@@ -50,10 +50,10 @@ document.getElementById("register-meme").addEventListener("click", async functio
 
   }
 });
-
+let myArr;
 async function windowsLoaded(){
 client=await Ae.Aepp();
-let myArr= await callStatic('getAllMemes',[]);
+myArr= await callStatic('getAllMemes',[]);
 console.log(myArr);
 document.getElementById("loader").style.display="none";
 for(let i in myArr){
@@ -71,7 +71,7 @@ for(let i in myArr){
 
   let aeInput=document.createElement('input');
   aeInput.placeholder="Enter Meme url" 
-  aeInput.value=myArr[i][1]['url'];
+  
   let voteButton=document.createElement('button');
   voteButton.innerText="Vote"
   voteButton.addEventListener('click', async function(){
