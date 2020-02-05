@@ -54,11 +54,11 @@ for(let i in myArr){
   voteCountParagraph.innerText='Votecount :'+ myArr[i][1]['voteCount'];
 
   let memeImage=document.createElement('img');
-  memeImage.src=myArr[i][1].url;
+  memeImage.src=myArr[i][1]['url'];
 
   let aeInput=document.createElement('input');
   aeInput.placeholder="Enter Meme url" 
-  aeInput.value=myArr[i][1].url;
+  aeInput.value=myArr[i][1]['url'];
   let voteButton=document.createElement('button');
   voteButton.innerText="Vote"
   voteButton.addEventListener('click', async function(){
@@ -87,13 +87,19 @@ for(let i in myArr){
 }
 window.addEventListener('load',windowsLoaded);
 
-async function contractCall(functionName,argsArray,value){
-    let contract =client.getContractInstance(contractSource,{contractAddress});
-   let response=await contract.call(functionName,argsArray,{amount:value}).catch(e=>console.error(e));
-   console.log("response",response);
-    return response;
-}
+// async function contractCall(functionName,argsArray,value){
+//     let contract =client.getContractInstance(contractSource,{contractAddress});
+//    let response=await contract.call(functionName,argsArray,{amount:value}).catch(e=>console.error(e));
+//    console.log("response",response);
+//     return response;
+// }
+async function contractCall(func, args, value) {
+  const contract = await client.getContractInstance(contractSource, {contractAddress});
+  //Make a call to write smart contract func, with aeon value input
+  const calledSet = await contract.call(func, args, {amount: value}).catch(e => console.error(e));
 
+  return calledSet;
+}
 // async function callStatic(functionName,argsArray){
 //     let contract=client.getContractInstance(constractSource,{contractAddress});
 //     let response=await contract.call(functionName,argsArray,{callStatic:true}).catch(e=>console.error(e));
